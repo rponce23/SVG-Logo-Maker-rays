@@ -3,13 +3,13 @@ const fs = require('fs');
 const {Shapes, Square, Circle, Triangle} = require('./lib/shapes')
 
 function generateLogo(){
-    `${initials}
+    `${data.initials}
 
-    ${textColor}
+    ${data.textColor}
 
-    ${logoShape}
+    ${data.logoShape}
 
-    ${shapeColor}
+    ${data.shapeColor}
     `
 };
 
