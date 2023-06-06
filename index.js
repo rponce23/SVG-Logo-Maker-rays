@@ -2,14 +2,16 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const {Shapes, Square, Circle, Triangle} = require('./lib/shapes')
 
-function generateLogo(){
-    `${data.initials}
+function generateLogo(data){
+    `
+    a: ${data.initials}
 
-    ${data.textColor}
+    b: ${data.textColor}
 
-    ${data.logoShape}
+    c: ${data.logoShape}
 
-    ${data.shapeColor}
+    d: ${data.shapeColor}
+
     `
 };
 
@@ -61,9 +63,9 @@ inquirer.prompt([
         }
     },
 ])
-.then((data) =>{
+.then((data)=>{
     const createLogo = generateLogo(data);
     console.log(createLogo);
 
-    fs.writeFile('yourlogo.txt', createLogo, (err) => err ? console.error(err) : console.log('Logo created succesfully'))
+    fs.writeFile('yourlogo.txt', createLogo)
 });
