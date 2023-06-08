@@ -1,18 +1,20 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const {Shapes, Square, Circle, Triangle} = require('./lib/shapes')
+
 
 function generateLogo(data){
-    `
-    a: ${data.initials}
+    if(data.logoShape === 'Square'){
+        
+        return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect x="73" y="40" width="160" height="160" fill="${data.shapeColor}" /><text x="150" y="125" font-size="60" text-anchor="middle" fill="${data.textColor}">${data.initials}</text></svg>;`;
+    } else if(data.logoShape === 'Circle'){
+        
+        return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="150" cy="115" r="80" fill="${data.shapeColor}" /><text x="150" y="125" font-size="60" text-anchor="middle" fill="${data.textColor}">${data.initials}</text></svg>;`;
+    } else if(data.logoShape === 'Triangle'){
+        
+        return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg"><polygon points="150, 18 244, 182 56, 182" fill="${data.shapeColor}" /><text x="150" y="125" font-size="60" text-anchor="middle" fill="${data.textColor}">${data.initials}</text></svg>;`;
+    }
 
-    b: ${data.textColor}
-
-    c: ${data.logoShape}
-
-    d: ${data.shapeColor}
-
-    `
+    
 };
 
 
@@ -67,5 +69,5 @@ inquirer.prompt([
     const createLogo = generateLogo(data);
     console.log(createLogo);
 
-    fs.writeFile('yourlogo.txt', createLogo)
+    fs.writeFile('yourlogo.svg', createLogo, (err) => err ? console.error(err) : console.log('Successfully created file!'))
 });
